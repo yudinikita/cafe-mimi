@@ -2,3 +2,15 @@
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+/coverage
+.env
+.env.*
+!.env.example
+*.md
+vite.config.ts.*

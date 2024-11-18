@@ -1,0 +1,146 @@
+@font-face {
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local('ClearSans Regular'),
+    local('ClearSans-Regular'),
+    url('$lib/assets/fonts/clear-sans/ClearSans-Regular.ttf') format('truetype');
+  font-family: 'ClearSans';
+  font-display: swap;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 1 999;
+  src:
+    url('$lib/assets/fonts/akony/AKONY.woff2') format('woff2-variations'),
+    url('$lib/assets/fonts/akony/AKONY.woff2') format('woff-variations'),
+    url('$lib/assets/fonts/akony/AKONY.woff2') format('truetype-variations');
+  font-family: 'AKONY';
+  font-display: swap;
+}
+
+:root {
+  --font-fallback: BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Helvetica, Arial, Lucida Grande, sans-serif;
+  --font-heading: 'Room', 'ClearSans', var(--font-fallback);
+  --font-text: 'ClearSans', var(--font-fallback);
+
+  --color-black: #090909;
+  --color-white: #ffffff;
+  --color-bright-gray: #ebebeb;
+
+  --color-text: var(--color-black);
+  --color-bg: var(--color-bright-gray);
+
+  --min-width: 320px;
+  --anim-delay: 0.32s;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-base: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  margin: 0;
+  padding: 0;
+  touch-action: manipulation;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: none;
+  background-color: var(--color-bg);
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased !important;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  text-rendering: optimizeLegibility !important;
+}
+
+body {
+  margin: 0;
+  min-width: var(--min-width);
+  overflow-x: hidden;
+  color: var(--color-text);
+  font-weight: 400;
+  font-size: var(--size-text);
+  line-height: 1;
+  font-family: var(--font-text);
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+html::-webkit-scrollbar-track {
+  background: var(--color-black);
+}
+
+/* Handle */
+html::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  background: hsla(0, 0%, 100%, 0.35);
+}
+
+/* Handle on hover */
+html::-webkit-scrollbar-thumb:hover {
+  border-radius: 16px;
+  background: var(--color-white);
+}
+
+a,
+p,
+span {
+  color: var(--color-text);
+  font-family: var(--font-text);
+}
+
+a {
+  position: relative;
+  transition: all var(--anim-delay) ease-in-out;
+  text-decoration: none;
+  text-underline-offset: 0.25em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text);
+  font-weight: 500;
+  font-family: var(--font-heading);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px dashed var(--color-black);
+  outline-offset: 2px;
+}
