@@ -123,7 +123,6 @@
     <div class="game-wrapper">
       <div class="player" style={`--mouse-x: ${Math.abs($mouseCoordsSpring.x * 100)}%;`}>
         <enhanced:img src="$lib/assets/images/game-player.png" alt="" class="player-image" />
-        <p>{Math.round($mouseCoordsSpring.x * 100)}</p>
       </div>
       <div class="items">
         {#each items as item (item)}
