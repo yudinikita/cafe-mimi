@@ -8,7 +8,7 @@ export default defineConfig({
     sveltekit(),
     enhancedImages(),
     svg({
-      includePaths: ['./src/lib/assets/icons/', './src/lib/assets/pictures/'],
+      includePaths: ['./src/lib/assets/icons/'],
       svgoOptions: {
         multipass: true,
         plugins: [

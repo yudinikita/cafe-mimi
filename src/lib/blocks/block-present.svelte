@@ -1,3 +1,0 @@
-<section>
-  Present
-</section>

@@ -3,8 +3,8 @@
   import BlockGame from '$lib/blocks/block-game.svelte';
   import BlockHero from '$lib/blocks/block-hero.svelte';
   import BlockNewsProducts from '$lib/blocks/block-news-products.svelte';
-  import BlockPresent from '$lib/blocks/block-present.svelte';
   import BlockProducts from '$lib/blocks/block-products.svelte';
+  import BlockMerch from '$lib/blocks/block-merch.svelte';
 </script>
 
 <Seo
@@ -15,7 +15,7 @@
 />
 
 <BlockHero />
-<BlockPresent />
 <BlockProducts />
 <BlockNewsProducts />
+<BlockMerch />
 <BlockGame />
