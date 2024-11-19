@@ -59,7 +59,7 @@
       if (item.y >= 100) {
         return false;
       }
-      if (Math.abs(item.x - playerX) < 10 && item.y > 60) {
+      if (Math.abs(item.x - playerX) < 10 && item.y > 40) {
         if (item.type === 'bad') {
           score.update((n) => n - 1);
           if ($score <= 0) {
@@ -121,8 +121,9 @@
     </div>
   {:else if gameStarted && !gameOver}
     <div class="game-wrapper">
-      <div class="player" style={`--mouse-x: ${$mouseCoordsSpring.x * 100}%;`}>
+      <div class="player" style={`--mouse-x: ${Math.abs($mouseCoordsSpring.x * 100)}%;`}>
         <enhanced:img src="$lib/assets/images/game-player.png" alt="" class="player-image" />
+        <p>{Math.round($mouseCoordsSpring.x * 100)}</p>
       </div>
       <div class="items">
         {#each items as item (item)}
@@ -159,12 +160,14 @@
     left: var(--mouse-x, 0px);
     transform: translateX(-50%);
     transition: left 0.2s ease-out;
+    width: 250px;
   }
   .player-image {
     display: block;
     margin: 0 auto;
     width: 100%;
-    height: auto;
+    max-width: 300px;
+    height: 100%;
   }
   .game-over {
     display: flex;
