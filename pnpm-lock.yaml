@@ -68,6 +68,9 @@ importers:
       svelte-check:
         specifier: ^4.0.0
         version: 4.0.9(picomatch@4.0.2)(svelte@4.2.19)(typescript@5.6.3)
+      svelte-intersection-observer:
+        specifier: ^1.0.0
+        version: 1.0.0
       three:
         specifier: ^0.170.0
         version: 0.170.0
@@ -1341,6 +1344,9 @@ packages:
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
     peerDependencies:
       svelte: ^3.19.0 || ^4.0.0
+
+  svelte-intersection-observer@1.0.0:
+    resolution: {integrity: sha512-AoxSog8fSt9sSN8ajMYM1I48ndq+rmPlaZSkJFCRbZ7I3KO8IPX6pl5mewWxdYL1JDI06hHu/7epn3h5tlJV9w==}
 
   svelte-parse-markup@0.1.5:
     resolution: {integrity: sha512-T6mqZrySltPCDwfKXWQ6zehipVLk4GWfH1zCMGgRtLlOIFPuw58ZxVYxVvotMJgJaurKi1i14viB2GIRKXeJTQ==}
@@ -2699,6 +2705,8 @@ snapshots:
   svelte-hmr@0.16.0(svelte@4.2.19):
     dependencies:
       svelte: 4.2.19
+
+  svelte-intersection-observer@1.0.0: {}
 
   svelte-parse-markup@0.1.5(svelte@4.2.19):
     dependencies:

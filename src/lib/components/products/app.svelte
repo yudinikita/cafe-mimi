@@ -3,6 +3,9 @@
   import Girl from '$lib/components/girl.svelte';
   import { T } from '@threlte/core';
 
+  export let rotation: [number, number, number] = [0, 0, 0];
+  export let position: [number, number, number] = [0, 0, 0];
+
   transitions();
 </script>
 
@@ -23,4 +26,4 @@
 
 <T.AmbientLight intensity={0.5} />
 
-<Girl />
+<Girl {position} {rotation} />

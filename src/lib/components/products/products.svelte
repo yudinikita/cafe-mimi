@@ -5,6 +5,8 @@
   import App from './app.svelte';
   import { _springScrollPos, scrollPos } from '../scrollPos';
   import { onMount } from 'svelte';
+  import Colours from '../colours/colours.svelte';
+  import Button from '../button.svelte';
 
   const onScroll = () => {
     // get normalized scroll position in document. 0 should equal top of page, 1
@@ -23,6 +25,12 @@
       hard: true,
     });
   });
+
+  let headRotation: [number, number, number];
+  let headPosition: [number, number, number];
+
+  $: headRotation = [0, $scrollPos - 1, 0];
+  $: headPosition = [0, $scrollPos * -0.15, 0];
 </script>
 
 <svelte:window on:scroll={onScroll} />
@@ -43,19 +51,23 @@
           premultipliedAlpha: false,
         }}
       >
-        <App />
+        <App rotation={headRotation} position={headPosition} />
       </Canvas>
     </div>
     <div class="layer layer-2">
       <p class="heading">Создавай свои правила</p>
     </div>
-    <div class="layer layer-2">
+    <div class="layer layer-3">
       <p class="heading">Colours</p>
-      <p class="desc">
+      <Colours />
+      <Button type="primary" class="colours-button">Посмотреть</Button>
+    </div>
+    <div class="layer layer-4">
+      <p class="colours-desc">
         Инновационные формулы на основе трендовых и функциональных ингредиентов, натуральных экстрактов
       </p>
     </div>
-    <div class="layer layer-2">
+    <div class="layer layer-5">
       <p class="heading">Мы делаем людей счастливыми!</p>
     </div>
   </div>
@@ -73,9 +85,43 @@
     z-index: 10;
     width: 100%;
     height: 100vh;
+    pointer-events: none;
   }
   .layer {
     min-height: 100vh;
+  }
+  .layer :global(.colours-button) {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 260px;
+    margin-bottom: var(--space-lg);
+  }
+  .layer-2 {
+    animation-timeline: view(block 50% 10%);
+    animation-duration: 1ms;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-name: layer-animation;
+  }
+  .colours-desc {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    font-size: 2rem;
+    line-height: 160%;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  @keyframes layer-animation {
+    0% {
+      transform: scaleX(0.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
   }
   .star {
     position: absolute;
