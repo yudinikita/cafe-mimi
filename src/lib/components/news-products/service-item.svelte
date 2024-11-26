@@ -5,6 +5,7 @@
   export let text: string;
   export let img: string | Picture;
   export let icon: SvgComponentType;
+  export let typeBg: 'first' | 'second' | 'third' = 'first';
 
   let isOpen = false;
 
@@ -14,7 +15,9 @@
 </script>
 
 <div class="service-item">
-  <enhanced:img src={img} alt="" class="service-image" />
+  <div class={`image-wrapper ${typeBg}`}>
+    <enhanced:img src={img} alt="" class="service-image" width="267" height="400" />
+  </div>
   <h3 class="title">{title}</h3>
   <p class={`text ${!isOpen ? 'text-close' : ''}`}>{text}</p>
   <button class={`button-icon ${isOpen ? 'button-open' : ''}`} on:click={handleClick}>
@@ -25,6 +28,7 @@
 <style>
   .service-item {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     gap: var(--space-sm);
@@ -57,6 +61,48 @@
     border-radius: 40px;
     height: auto;
     max-height: 543px;
+  }
+  .image-wrapper {
+    position: relative;
+  }
+  .first::after {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    opacity: 1;
+    z-index: -1;
+    border-radius: 40px;
+    background: linear-gradient(0deg, rgba(187, 164, 208, 0), rgba(187, 164, 208, 0.4));
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    content: '';
+  }
+  .second::after {
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    opacity: 1;
+    z-index: -1;
+    border-radius: 40px;
+    background: linear-gradient(0deg, rgba(250, 242, 177, 0), rgba(250, 242, 177, 0.4));
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    content: '';
+  }
+  .third::after {
+    position: absolute;
+    top: 10%;
+    right: 30%;
+    opacity: 1;
+    z-index: -1;
+    border-radius: 40px;
+    background: linear-gradient(0deg, rgba(255, 192, 171, 0), rgba(255, 192, 171, 0.4));
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    content: '';
   }
   .button-icon {
     display: flex;

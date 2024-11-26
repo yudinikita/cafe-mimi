@@ -5,21 +5,20 @@
 </script>
 
 <div class="colours-item">
-  <enhanced:img src={img} alt="" class="colours-image" />
+  <enhanced:img src={img} alt="" class="colours-image" width="195" height="285" />
 </div>
 
 <style>
   .colours-item {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: var(--space-sm);
+    text-align: center;
   }
   .colours-image {
     display: block;
-    margin: 0 auto;
-    border-radius: 40px;
-    width: 100%;
-    height: auto;
+    width: 12vw;
+    height: 100%;
+    object-fit: cover;
   }
 </style>

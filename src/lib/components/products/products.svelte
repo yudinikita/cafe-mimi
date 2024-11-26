@@ -2,11 +2,18 @@
   import { Canvas } from '@threlte/core';
   import Container from '../container.svelte';
   import { NoToneMapping } from 'three';
+  import IntersectionObserver from 'svelte-intersection-observer';
   import App from './app.svelte';
   import { _springScrollPos, scrollPos } from '../scrollPos';
   import { onMount } from 'svelte';
   import Colours from '../colours/colours.svelte';
-  import Button from '../button.svelte';
+  import Typewriter from 'svelte-typewriter';
+  import { fade } from 'svelte/transition';
+  import MiniStar from '$lib/assets/icons/star.svg?component';
+  import AnimText from '../anim-text.svelte';
+  import { getRand } from '$lib/utils';
+
+  const COUNT_STARS = 24;
 
   const onScroll = () => {
     // get normalized scroll position in document. 0 should equal top of page, 1
@@ -26,33 +33,54 @@
     });
   });
 
+  let innerWidth: number;
+
   let headRotation: [number, number, number];
   let headPosition: [number, number, number];
+
+  let starEl: HTMLElement, descEl: HTMLElement, canvasEl: HTMLElement, miniStarEl: HTMLElement;
 
   $: headRotation = [0, $scrollPos - 1, 0];
   $: headPosition = [0, $scrollPos * -0.15, 0];
 </script>
 
-<svelte:window on:scroll={onScroll} />
+<svelte:window on:scroll={onScroll} bind:innerWidth />
 
 <Container>
   <div class="products-wrapper">
     <div class="layer-1">
       <p class="heading">Будь собой</p>
-      <enhanced:img src="$lib/assets/images/star.png" alt="" class="star" />
+      <IntersectionObserver element={starEl} let:intersecting>
+        <enhanced:img
+          bind:this={starEl}
+          src="$lib/assets/images/star.png"
+          alt=""
+          width="410"
+          height="410"
+          class={`star star-in ${intersecting ? 'star-in-place' : ''} `}
+        /></IntersectionObserver
+      >
     </div>
     <div class="canvas-wrapper">
-      <Canvas
-        toneMapping={NoToneMapping}
-        rendererParameters={{
-          powerPreference: 'high-performance',
-          antialias: false,
-          stencil: false,
-          premultipliedAlpha: false,
-        }}
-      >
-        <App rotation={headRotation} position={headPosition} />
-      </Canvas>
+      <IntersectionObserver element={canvasEl} let:intersecting>
+        <div bind:this={canvasEl} transition:fade>
+          {#if intersecting}
+            <div class="canvas-container">
+              <Canvas
+                toneMapping={NoToneMapping}
+                rendererParameters={{
+                  powerPreference: 'high-performance',
+                  antialias: false,
+                  stencil: false,
+                  premultipliedAlpha: false,
+                }}
+              >
+                <App rotation={headRotation} position={headPosition} />
+              </Canvas>
+            </div>
+          {/if}
+        </div>
+      </IntersectionObserver>
     </div>
     <div class="layer layer-2">
       <p class="heading">Создавай свои правила</p>
@@ -60,15 +88,43 @@
     <div class="layer layer-3">
       <p class="heading">Colours</p>
       <Colours />
-      <Button type="primary" class="colours-button">Посмотреть</Button>
     </div>
     <div class="layer layer-4">
-      <p class="colours-desc">
-        Инновационные формулы на основе трендовых и функциональных ингредиентов, натуральных экстрактов
-      </p>
+      <IntersectionObserver element={descEl} let:intersecting>
+        <div bind:this={descEl}>
+          {#if intersecting}
+            <Typewriter>
+              <p class="colours-desc">
+                Инновационные формулы на основе трендовых и функциональных ингредиентов, натуральных экстрактов
+              </p>
+            </Typewriter>
+          {/if}
+        </div>
+      </IntersectionObserver>
     </div>
     <div class="layer layer-5">
-      <p class="heading">Мы делаем людей счастливыми!</p>
+      <div class="mini-stars-wrapper">
+        <AnimText text="Мы делаем людей счастливыми!" class="heading" />
+        <IntersectionObserver element={miniStarEl} let:intersecting>
+          <div bind:this={miniStarEl}>
+            {#if intersecting}
+              <div class="mini-stars" transition:fade={{ delay: 700 }}>
+                {#each Array(COUNT_STARS) as _, i}
+                  <MiniStar
+                    class={`mini-star ${intersecting ? 'mini-star-in-place' : ''} `}
+                    style={`
+                      transform:
+                        translate(-50%, -50%)
+                        translate(${getRand(25, innerWidth - 25)}px, ${getRand(25, 225)}px)
+                        scale(${Math.random().toFixed(3)});
+                    `}
+                  />
+                {/each}
+              </div>
+            {/if}
+          </div>
+        </IntersectionObserver>
+      </div>
     </div>
   </div>
 </Container>
@@ -80,29 +136,68 @@
   }
   .canvas-wrapper {
     position: sticky;
-    top: 20%;
+    top: 10%;
     left: 0;
     z-index: 10;
     width: 100%;
     height: 100vh;
     pointer-events: none;
   }
-  .layer {
-    min-height: 100vh;
-  }
-  .layer :global(.colours-button) {
-    display: block;
-    margin: 0 auto;
+  .canvas-container {
+    animation: canvas-anim 1.2s ease-in-out;
     width: 100%;
-    max-width: 260px;
-    margin-bottom: var(--space-lg);
+    height: 100vh;
+    pointer-events: none;
+  }
+  @keyframes canvas-anim {
+    0% {
+      transform: translateY(80%) scale(0.5);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+  .layer {
+    background: var(--color-bg);
+    width: 100%;
+    min-height: 100vh;
   }
   .layer-2 {
     animation-timeline: view(block 50% 10%);
+    display: flex;
+    align-items: center;
     animation-duration: 1ms;
     animation-timing-function: linear;
     animation-fill-mode: both;
     animation-name: layer-animation;
+    min-height: 200vh;
+  }
+  .layer-3 {
+    position: sticky;
+    top: var(--space-base);
+    z-index: 1;
+    padding-top: var(--space-base);
+    min-height: 300vh;
+    overflow: hidden;
+  }
+  .layer-4 {
+    display: flex;
+    position: sticky;
+    top: var(--space-base);
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    min-height: 100vh;
+  }
+  .layer-5 {
+    display: flex;
+    position: sticky;
+    top: var(--space-base);
+    align-items: center;
+    z-index: 3;
+    min-height: 200vh;
   }
   .colours-desc {
     margin: 0 auto;
@@ -116,7 +211,7 @@
   @keyframes layer-animation {
     0% {
       transform: scaleX(0.5);
-      opacity: 0;
+      opacity: 0.5;
     }
     100% {
       transform: scaleX(1);
@@ -127,5 +222,45 @@
     position: absolute;
     top: 0;
     right: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .star-in {
+    transform: scale(0.01) translateX(50%);
+    opacity: 0.01;
+    transition: all 3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0s;
+    transition-duration: 4s;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .star-in-place {
+    transform: scale(1) translateX(0);
+    opacity: 1;
+  }
+  .mini-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .mini-stars-wrapper {
+    position: relative;
+  }
+  .mini-stars :global(.mini-star) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 2.5vw;
+    min-width: 20px;
+    max-width: 50px;
+    height: auto;
+  }
+  .mini-stars :global(.mini-star-in-place) {
+    opacity: 1;
   }
 </style>

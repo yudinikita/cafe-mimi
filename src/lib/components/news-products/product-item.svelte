@@ -8,7 +8,9 @@
 
 <div class="product-item">
   <h3 class="title">{title}</h3>
-  <enhanced:img src={img} alt="" class="product-image" />
+  <div class="image-wrapper">
+    <enhanced:img src={img} alt="" class="product-image" width="342" height="668" />
+  </div>
   <Button type="primary">Посмотреть</Button>
 </div>
 
@@ -21,14 +23,17 @@
   }
   .title {
     margin-bottom: var(--space-sm);
-    font-size: 2rem;
+    font-size: 1.5vw;
+  }
+  .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
   .product-image {
     display: block;
     margin: 0 auto;
     width: 100%;
     max-width: 400px;
-    height: auto;
-    max-height: 600px;
   }
 </style>

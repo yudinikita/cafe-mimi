@@ -30,7 +30,7 @@
   --color-bright-gray: #ebebeb;
 
   --color-text: var(--color-black);
-  --color-bg: var(--color-bright-gray);
+  --color-bg: var(--color-white);
 
   --min-width: 320px;
   --anim-delay: 0.32s;
@@ -101,6 +101,7 @@ body {
   font-size: var(--size-text);
   line-height: 1;
   font-family: var(--font-text);
+  accent-color: black;
 }
 
 html::-webkit-scrollbar {
@@ -165,7 +166,20 @@ ul {
   color: var(--color-text);
   font-weight: bold;
   font-size: 3rem;
-  font-size: 4rem;
+  font-size: 4vw;
+  line-height: 160%;
+  font-family: var(--font-heading);
+  text-align: center;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.heading span {
+  margin: 0 auto;
+  color: var(--color-text);
+  font-weight: bold;
+  font-size: 3rem;
+  font-size: 4vw;
   line-height: 160%;
   font-family: var(--font-heading);
   text-align: center;
@@ -175,8 +189,7 @@ ul {
 
 .desc {
   margin: 0 auto;
-  margin-top: var(--space-lg);
-  font-size: 1rem;
+  font-size: 2vh;
   line-height: 160%;
   text-align: center;
   text-transform: uppercase;

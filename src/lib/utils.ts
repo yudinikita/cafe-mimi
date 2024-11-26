@@ -10,3 +10,7 @@ export const exclude = <T>(obj: Record<string, T>, keys: string[]): Record<strin
 
   return newObj;
 };
+
+export const getRand = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};

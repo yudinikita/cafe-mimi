@@ -48,6 +48,8 @@
 		"svelte": "^4.2.7",
 		"svelte-check": "^4.0.0",
 		"svelte-intersection-observer": "^1.0.0",
+		"svelte-typewriter": "^3.2.3",
+		"swiper": "^11.1.15",
 		"three": "^0.170.0",
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.0.0",

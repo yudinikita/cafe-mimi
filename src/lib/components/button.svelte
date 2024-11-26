@@ -1,7 +1,7 @@
 <script lang="ts">
   import { exclude } from '$lib/utils';
 
-  export let type: 'primary' | undefined | null = 'primary';
+  export let type: 'primary' | 'icon' | undefined | null = 'primary';
   export let href: string | undefined | null = undefined;
   export let htmlType: 'button' | 'submit' | 'reset' = 'button';
   export let disabled: false | true = false;
@@ -67,6 +67,7 @@
   .button-primary {
     border: 1px solid var(--color-black);
     border-radius: 100px;
+    background-color: var(--color-white);
     padding: var(--space-sm) var(--space-lg);
     text-transform: uppercase;
   }
@@ -75,6 +76,25 @@
     color: var(--color-white);
   }
   .button-primary:active {
+    transform: scale(0.95);
+  }
+  .button-icon {
+    border: 1px solid var(--color-black);
+    border-radius: 100px;
+    background-color: var(--color-white);
+    padding: var(--space-sm);
+  }
+  .button-icon:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+  .button-icon :global(svg path) {
+    transition: all var(--anim-delay) ease-in-out;
+  }
+  .button-icon:hover :global(svg path) {
+    fill: var(--color-white);
+  }
+  .button-icon:active {
     transform: scale(0.95);
   }
 </style>

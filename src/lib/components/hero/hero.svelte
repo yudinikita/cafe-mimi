@@ -36,15 +36,17 @@
 <Container>
   <div class="hero-wrapper">
     <div class="logo-wrapper">
-      <Logo />
+      <Logo width="520px" height="100px" />
     </div>
     <div class="desc-wrapper">
-      <p class="desc">Инновационные формулы на основе трендовых <br /> и функциональных ингредиентов</p>
+      <p class="desc">Инновационные формулы на основе <br /> трендовых и функциональных ингредиентов</p>
     </div>
     <div class="blob-wrapper">
       <enhanced:img
         src="$lib/assets/images/blob-1.png"
         alt=""
+        width="436"
+        height="560"
         class="blob blob-1"
         style={`
         transform:
@@ -56,6 +58,8 @@
       <enhanced:img
         src="$lib/assets/images/blob-2.png"
         alt=""
+        width="212"
+        height="166"
         class="blob blob-2"
         style={`
         transform:
@@ -67,6 +71,8 @@
       <enhanced:img
         src="$lib/assets/images/blob-3.png"
         alt=""
+        width="367"
+        height="440"
         class="blob blob-3"
         style={`
         transform:
@@ -79,6 +85,8 @@
     <enhanced:img
       src="$lib/assets/images/hero-product.png"
       alt=""
+      width="363"
+      height="448"
       class="hero-product"
       style={`
       transform:
@@ -96,7 +104,7 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     pointer-events: none;
@@ -119,16 +127,19 @@
     display: block;
     margin: 0 auto;
     width: 100%;
-    max-width: 800px;
     height: auto;
   }
   .desc-wrapper {
-    margin-bottom: var(--space-base);
+    margin: var(--space-lg) auto;
   }
   .hero-product {
-    animation: hero-product-animation 2.3s ease-in-out;
+    animation:
+      product-show 1.7s ease-in-out,
+      product-anim 4s ease-in-out infinite;
+    width: 32vw;
+    height: auto;
   }
-  @keyframes hero-product-animation {
+  @keyframes product-show {
     0% {
       transform: translateY(100%) scale(1.5);
       opacity: 0;
@@ -136,6 +147,17 @@
     100% {
       transform: translateY(0) scale(1);
       opacity: 1;
+    }
+  }
+  @keyframes product-anim {
+    0% {
+      transform: translate(0) rotate(0);
+    }
+    50% {
+      transform: translate(2%) rotate(-10deg);
+    }
+    100% {
+      transform: translate(0) rotate(0);
     }
   }
   .desc {
@@ -159,46 +181,88 @@
     user-select: none;
   }
   .blob-1 {
-    top: 10%;
+    bottom: 10%;
     left: 0;
-    animation: blob-1-animation 1.7s ease-in-out;
+    animation:
+      blob-1-show 1.7s ease-in-out,
+      blob-1-anim 8s ease-in-out infinite;
+    width: 32vw;
+  }
+  @keyframes blob-1-show {
+    from {
+      transform: translate(-20%, -20%) scale(0.5);
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes blob-1-anim {
+    0% {
+      transform: translate(0, 0) rotate(0) scale(1);
+    }
+    50% {
+      transform: translate(0, -5%) rotate(-5deg) scale(0.925);
+    }
+    100% {
+      transform: translate(0, 0) rotate(0) scale(1);
+    }
   }
   .blob-2 {
-    top: 60%;
+    top: 50%;
     left: 50%;
     transform: translateY(-50%);
-    animation: blob-2-animation 1.3s ease-in-out;
+    animation:
+      blob-2-show 2.3s ease-in-out,
+      blob-2-anim 7s ease-in-out infinite;
+    width: 16vw;
+  }
+  @keyframes blob-2-show {
+    from {
+      transform: translate(20%, -20%) scale(0.5);
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes blob-2-anim {
+    0% {
+      transform: translate(0, 0) rotate(0) scale(1);
+    }
+    50% {
+      transform: translate(10%, 2%) rotate(-10deg) scale(0.9);
+    }
+    100% {
+      transform: translate(0, 0) rotate(0) scale(1);
+    }
   }
   .blob-3 {
-    top: 5%;
+    top: 10%;
     right: 0;
-    animation: blob-3-animation 2.3s ease-in-out;
+    animation:
+      blob-3-show 2.3s ease-in-out,
+      blob-3-anim 7s ease-in-out infinite;
+    width: 24vw;
   }
-  @keyframes blob-1-animation {
-    0% {
-      transform: translateX(-20%) translateY(-20%) scale(0.5);
+  @keyframes blob-3-show {
+    from {
+      transform: translate(20%, -20%) scale(0.3);
       opacity: 0;
     }
-    100% {
+    to {
       opacity: 1;
     }
   }
-  @keyframes blob-2-animation {
+  @keyframes blob-3-anim {
     0% {
-      transform: translateX(-100%) scale(0.5);
-      opacity: 0;
+      transform: translate(0, 0) rotate(0);
+    }
+    50% {
+      transform: translate(0, 5%) rotate(-5deg);
     }
     100% {
-      opacity: 1;
-    }
-  }
-  @keyframes blob-3-animation {
-    0% {
-      transform: translateX(40%) scale(0.3);
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
+      transform: translate(0, 0) rotate(0);
     }
   }
 </style>

@@ -5,6 +5,8 @@
   import BlockNewsProducts from '$lib/blocks/block-news-products.svelte';
   import BlockProducts from '$lib/blocks/block-products.svelte';
   import BlockMerch from '$lib/blocks/block-merch.svelte';
+  import BlockImages from '$lib/blocks/block-images.svelte';
+  import Background from '$lib/components/background.svelte';
 </script>
 
 <Seo
@@ -14,8 +16,11 @@
   }}
 />
 
+<Background />
+
 <BlockHero />
 <BlockProducts />
+<BlockImages />
 <BlockNewsProducts />
 <BlockMerch />
 <BlockGame />
