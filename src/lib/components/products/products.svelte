@@ -1,9 +1,6 @@
 <script lang="ts">
-  import { Canvas } from '@threlte/core';
   import Container from '../container.svelte';
-  import { NoToneMapping } from 'three';
   import IntersectionObserver from 'svelte-intersection-observer';
-  import App from './app.svelte';
   import { _springScrollPos, scrollPos } from '../scrollPos';
   import { onMount } from 'svelte';
   import Colours from '../colours/colours.svelte';
@@ -35,13 +32,7 @@
 
   let innerWidth: number;
 
-  let headRotation: [number, number, number];
-  let headPosition: [number, number, number];
-
-  let starEl: HTMLElement, descEl: HTMLElement, canvasEl: HTMLElement, miniStarEl: HTMLElement;
-
-  $: headRotation = [0, $scrollPos - 1, 0];
-  $: headPosition = [0, $scrollPos * -0.15, 0];
+  let starEl: HTMLElement, descEl: HTMLElement, girlEl: HTMLElement, miniStarEl: HTMLElement;
 </script>
 
 <svelte:window on:scroll={onScroll} bind:innerWidth />
@@ -61,22 +52,12 @@
         /></IntersectionObserver
       >
     </div>
-    <div class="canvas-wrapper">
-      <IntersectionObserver element={canvasEl} let:intersecting>
-        <div bind:this={canvasEl} transition:fade>
+    <div class="girl-wrapper">
+      <IntersectionObserver element={girlEl} let:intersecting>
+        <div bind:this={girlEl} style="width: 35vw">
           {#if intersecting}
-            <div class="canvas-container">
-              <Canvas
-                toneMapping={NoToneMapping}
-                rendererParameters={{
-                  powerPreference: 'high-performance',
-                  antialias: false,
-                  stencil: false,
-                  premultipliedAlpha: false,
-                }}
-              >
-                <App rotation={headRotation} position={headPosition} />
-              </Canvas>
+            <div class="girl-container" transition:fade>
+              <enhanced:img src="$lib/assets/images/girl.png" alt="" width="627" height="580" class="girl" />
             </div>
           {/if}
         </div>
@@ -134,22 +115,28 @@
     position: relative;
     margin-top: var(--space-2xl);
   }
-  .canvas-wrapper {
+  .girl-wrapper {
+    display: flex;
     position: sticky;
-    top: 10%;
+    top: 55%;
     left: 0;
+    justify-content: center;
     z-index: 10;
     width: 100%;
-    height: 100vh;
     pointer-events: none;
   }
-  .canvas-container {
-    animation: canvas-anim 1.2s ease-in-out;
+  .girl-container {
+    animation: girl-anim 1.2s ease-in-out;
     width: 100%;
-    height: 100vh;
     pointer-events: none;
   }
-  @keyframes canvas-anim {
+  .girl {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+  }
+  @keyframes girl-anim {
     0% {
       transform: translateY(80%) scale(0.5);
       opacity: 0;
