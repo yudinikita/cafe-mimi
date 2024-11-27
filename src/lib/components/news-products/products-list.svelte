@@ -30,7 +30,6 @@
         loop: false,
         followFinger: true,
         speed: 800,
-        rewind: true,
         spaceBetween: 20,
         breakpoints: {
           640: {

@@ -52,9 +52,9 @@
         /></IntersectionObserver
       >
     </div>
-    <div class="girl-wrapper">
+    <div class="girl-layer">
       <IntersectionObserver element={girlEl} let:intersecting>
-        <div bind:this={girlEl} style="width: 35vw">
+        <div bind:this={girlEl} class="girl-wrapper">
           {#if intersecting}
             <div class="girl-container" transition:fade>
               <enhanced:img src="$lib/assets/images/girl.png" alt="" width="627" height="580" class="girl" />
@@ -115,15 +115,42 @@
     position: relative;
     margin-top: var(--space-2xl);
   }
-  .girl-wrapper {
+  .girl-layer {
     display: flex;
     position: sticky;
-    top: 55%;
+    top: 50%;
     left: 0;
     justify-content: center;
     z-index: 10;
     width: 100%;
     pointer-events: none;
+  }
+  .girl-wrapper {
+    width: 50vw;
+  }
+  @media (min-width: 1200px) {
+    .girl-layer {
+      top: 50%;
+    }
+    .girl-wrapper {
+      width: 35vw;
+    }
+  }
+  @media (min-width: 1400px) {
+    .girl-layer {
+      top: 55%;
+    }
+    .girl-wrapper {
+      width: 30vw;
+    }
+  }
+  @media (min-width: 1600px) {
+    .girl-layer {
+      top: 62%;
+    }
+    .girl-wrapper {
+      width: 21vw;
+    }
   }
   .girl-container {
     animation: girl-anim 1.2s ease-in-out;
@@ -166,13 +193,13 @@
     top: var(--space-base);
     z-index: 1;
     padding-top: var(--space-base);
-    min-height: 300vh;
+    min-height: 200vh;
     overflow: hidden;
   }
   .layer-4 {
     display: flex;
     position: sticky;
-    top: var(--space-base);
+    top: 0;
     justify-content: center;
     align-items: center;
     z-index: 2;

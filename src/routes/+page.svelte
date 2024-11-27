@@ -6,7 +6,6 @@
   import BlockProducts from '$lib/blocks/block-products.svelte';
   import BlockMerch from '$lib/blocks/block-merch.svelte';
   import BlockImages from '$lib/blocks/block-images.svelte';
-  import Background from '$lib/components/background.svelte';
 </script>
 
 <Seo
@@ -15,8 +14,6 @@
     meta_description: 'Cafe Mimi - Инновационные формулы на основе трендовых и функциональных ингредиентов.',
   }}
 />
-
-<Background />
 
 <BlockHero />
 <BlockProducts />

@@ -45,6 +45,11 @@
         height="382"
       />
     </IntersectionObserver>
+    <div class="circles">
+      <enhanced:img src="$lib/assets/images/game-item-4.png" alt="" class="circle circle-1" width="82" height="82" />
+      <enhanced:img src="$lib/assets/images/game-item-3.png" alt="" class="circle circle-2" width="55" height="55" />
+      <enhanced:img src="$lib/assets/images/game-item-1.png" alt="" class="circle circle-3" width="123" height="123" />
+    </div>
   </div>
   <Container>
     <ProductsList />
@@ -56,7 +61,63 @@
 </div>
 
 <style>
+  .circle {
+    position: absolute;
+    z-index: 1;
+  }
+  .circle-1 {
+    top: 15%;
+    right: 35%;
+    transform: rotate(-32deg);
+    animation: circle-1-anim 8s ease-in-out infinite;
+  }
+  @keyframes circle-1-anim {
+    0% {
+      transform: translate(0, 0) rotate(-16deg) scale(1);
+    }
+    50% {
+      transform: translate(12px, -16px) rotate(-32deg) scale(0.9);
+    }
+    100% {
+      transform: translate(0, 0) rotate(-16deg) scale(1);
+    }
+  }
+  .circle-2 {
+    top: 10%;
+    right: 10%;
+    transform: rotate(20deg);
+    animation: circle-2-anim 5s ease-in-out infinite;
+  }
+  @keyframes circle-2-anim {
+    0% {
+      transform: translate(0, 0) rotate(10deg) scale(1);
+    }
+    50% {
+      transform: translate(12px, 24px) rotate(20deg) scale(1.2);
+    }
+    100% {
+      transform: translate(0, 0) rotate(10deg) scale(1);
+    }
+  }
+  .circle-3 {
+    bottom: 7%;
+    right: 21%;
+    transform: rotate(12deg);
+    animation: circle-3-anim 12s ease-in-out infinite;
+  }
+  @keyframes circle-3-anim {
+    0% {
+      transform: translate(0, 0) rotate(6deg) scale(1);
+    }
+    50% {
+      transform: translate(18px, -8px) rotate(12deg) scale(1.05);
+    }
+    100% {
+      transform: translate(0, 0) rotate(6deg) scale(1);
+    }
+  }
   .images {
+    position: relative;
     margin-bottom: var(--space-xl);
   }
   .products-wrapper {
